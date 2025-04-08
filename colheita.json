@@ -1,0 +1,11 @@
+[
+    {
+        "data": "2025-04-08",
+        "talhao": "Peixe",
+        "area": 100.0,
+        "colhido": 15000.0,
+        "perda": 2000.0,
+        "produtividade_t_ha": 150.0,
+        "perda_percentual": 11.76
+    }
+]
