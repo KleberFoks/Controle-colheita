@@ -67,12 +67,10 @@ def exportar_para_oracle():
     print("\n--- Exportar dados para Oracle ---")
 
     try:
-
-        # Substitua pelos dados da FIAP
         conexao = oracledb.connect(
-            user="SEU_USUARIO",
-            password="SUA_SENHA",
-            dsn="oracle.fiap.com.br/orcl"
+            user="rm562225",
+            password="fiap25",
+            dsn="oracle.fiap.com.br:1521/ORCL"
         )
         cursor = conexao.cursor()
 
@@ -120,6 +118,32 @@ def exportar_para_oracle():
             pass
 
 
+# Função para consultar dados do banco Oracle
+def consultar_dados_oracle():
+    try:
+        conexao = oracledb.connect(
+            user="rm562225",
+            password="fiap25",
+            dsn="oracle.fiap.com.br:1521/ORCL"
+        )
+        cursor = conexao.cursor()
+        cursor.execute("SELECT * FROM colheita")
+        resultados = cursor.fetchall()
+
+        print("\n--- Registros no Banco Oracle ---")
+        for linha in resultados:
+            print(linha)
+
+    except oracledb.Error as e:
+        print(f"❌ Erro ao consultar dados: {e}")
+    finally:
+        try:
+            cursor.close()
+            conexao.close()
+        except:
+            pass
+
+
 # Menu principal
 def menu():
     while True:
@@ -127,7 +151,8 @@ def menu():
         print("1. Cadastrar nova colheita")
         print("2. Salvar dados em arquivos")
         print("3. Exportar para banco de dados Oracle")
-        print("4. Sair")
+        print("4. Consultar dados do Oracle")
+        print("5. Sair")
         opcao = input("Escolha uma opção: ")
 
         if opcao == "1":
@@ -138,6 +163,8 @@ def menu():
         elif opcao == "3":
             exportar_para_oracle()
         elif opcao == "4":
+            consultar_dados_oracle()
+        elif opcao == "5":
             print("Encerrando...")
             break
         else:
