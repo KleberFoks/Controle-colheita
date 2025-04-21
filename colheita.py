@@ -68,9 +68,9 @@ def exportar_para_oracle():
 
     try:
         conexao = oracledb.connect(
-            user="rm562225",
-            password="fiap25",
-            dsn="oracle.fiap.com.br:1521/ORCL"
+            user="***",
+            password="***",
+            dsn="***"
         )
         cursor = conexao.cursor()
 
